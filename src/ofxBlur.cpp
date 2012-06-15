@@ -49,6 +49,8 @@ string generateBlurSource(int radius, float shape) {
 	}
 	
 	stringstream src;
+	src << "#version 120\n";
+	src << "#extension GL_ARB_texture_rectangle : enable\n";
 	src << "uniform sampler2DRect source;\n";
 	src << "uniform vec2 direction;\n";
 	src << "void main(void) {\n";
@@ -71,6 +73,8 @@ string generateCombineSource(int passes, float downsample) {
 		combineNames.push_back("s" + ofToString(i));
 	}
 	stringstream src;
+	src << "#version 120\n";
+	src << "#extension GL_ARB_texture_rectangle : enable\n";
 	src << "uniform sampler2DRect " << ofJoinString(combineNames, ",") << ";\n";
 	src << "uniform float brightness;\n";
 	if(downsample == 1) {
